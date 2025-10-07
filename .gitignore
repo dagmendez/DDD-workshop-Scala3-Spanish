@@ -1,5 +1,17 @@
-*.class
-*.log
+#IDEs
+.bsp
+.DS_Store
+.idea
+.metals
+.scala-build
+.vscode
+.vscode/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Tyrian
+frontend/target/
+frontend/project/target/
+frontend/project/project/target/
+frontend/dist/*
+frontend/dist/
+frontend/.parcel-cache/
+frontend/node_modules
