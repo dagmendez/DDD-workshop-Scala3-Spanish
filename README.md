@@ -1,2 +1,2 @@
-# DDD-workshop-Scala3-Spanish
+# Taller DDD en Español
 Pequeño taller de Domain Driven Design (DDD) en castellano (español) codificado en Scala 3
