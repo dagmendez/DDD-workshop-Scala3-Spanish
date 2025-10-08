@@ -15,3 +15,7 @@ frontend/dist/*
 frontend/dist/
 frontend/.parcel-cache/
 frontend/node_modules
+
+# Cask
+backend/out
+backend/mill
