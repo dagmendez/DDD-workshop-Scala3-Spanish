@@ -7,6 +7,10 @@
 .vscode
 .vscode/
 
+#mill
+mill
+out
+
 # Tyrian
 frontend/target/
 frontend/project/target/

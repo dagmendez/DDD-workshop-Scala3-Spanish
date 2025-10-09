@@ -1,3 +1,3 @@
-import { TyrianApp } from "./target/scala-3.6.3/tyrianfrontend-fastopt/main.js"
+import { TyrianApp } from "../out/frontend/fastLinkJS.dest/main.js"
 
 TyrianApp.launch("myapp")
