@@ -8,9 +8,7 @@ import scala.scalajs.js.annotation.*
 object Main extends TyrianIOApp[Msg, Model]:
 
   private val validatorEndpoints: List[(String, String)] = List(
-    ("Obvio", "obvio"),
-    ("Correcto", "correcto"),
-    ("Correctísimo", "correctisimo")
+    ("Obvio", "obvio")
   )
 
   def router: Location => Msg =

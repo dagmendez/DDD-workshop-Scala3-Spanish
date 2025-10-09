@@ -51,24 +51,4 @@ object CaskServer extends cask.MainRoutes:
   def opcionesObvio(): cask.Response[String] =
     cask.Response("Opciones de Obvio", headers = corsHeaders)
 
-  @cask.post("/correcto")
-  def correcto(request: cask.Request): cask.Response[String] =
-    ValidadorCorrecto.ID.disyuntiva(request.text()) match
-      case Right(id)   => respuestaSatisfactoria(id.formateado)
-      case Left(error) => respuestaErronea(error.getMessage)
-
-  @cask.options("/correcto")
-  def opcionesCorrecto(): cask.Response[String] =
-    cask.Response("Opciones de Correcto", headers = corsHeaders)
-
-  @cask.post("/correctisimo")
-  def correctisimo(request: cask.Request): cask.Response[String] =
-    ValidadorCorrectisimo.ID.disyuntiva(request.text()) match
-      case Right(id)   => respuestaSatisfactoria(id.formateado)
-      case Left(error) => respuestaErronea(error.causa)
-
-  @cask.options("/correctisimo")
-  def opcionesCorrectisimo(): cask.Response[String] =
-    cask.Response("Opciones de Correctisimo", headers = corsHeaders)
-
   initialize()
