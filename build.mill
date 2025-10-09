@@ -27,3 +27,19 @@ object frontend extends ScalaJSModule {
     mvn"io.circe::circe-parser::0.14.12"
   )
 }
+
+object backend extends ScalaModule {
+  def scalaVersion = "3.7.3"
+
+  def mvnDeps = Seq(
+    mvn"com.lihaoyi::cask:0.10.2",
+    mvn"com.lihaoyi::upickle:4.3.2",
+    mvn"io.github.kitlangton::neotype:0.3.25",
+    mvn"io.github.iltotore::iron:3.2.0"
+  )
+
+  object test extends ScalaTests {
+    def mvnDeps = Seq(mvn"com.lihaoyi::utest:0.9.1")
+    def testFramework = "utest.runner.Framework"
+  }
+}

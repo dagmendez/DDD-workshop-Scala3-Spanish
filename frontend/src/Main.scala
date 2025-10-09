@@ -50,34 +50,33 @@ object Main extends TyrianIOApp[Msg, Model]:
   def view(model: Model): Html[Msg] =
     div(
       styles(
-        "display"         -> "flex",
-        "flex-direction"  -> "column",
-        "align-items"     -> "center",
+        "display" -> "flex",
+        "flex-direction" -> "column",
+        "align-items" -> "center",
         "justify-content" -> "center",
-        "gap"             -> "24px",
-        "max-width"       -> "900px",
-        "margin"          -> "0 auto",
-        "padding"         -> "1rem"
+        "gap" -> "24px",
+        "max-width" -> "900px",
+        "margin" -> "0 auto",
+        "padding" -> "1rem"
       )
     )(
       h1(text("Bienvenidos al taller de DDD")),
       div(
         styles(
-          "display"         -> "flex",
-          "flex-wrap"       -> "wrap",
-          "gap"             -> "1rem",
+          "display" -> "flex",
+          "flex-wrap" -> "wrap",
+          "gap" -> "1rem",
           "justify-content" -> "center",
-          "align-items"     -> "center"
+          "align-items" -> "center"
         )
       )(
         validatorEndpoints.map { case (name, _) =>
           button(
             onClick(Msg.SelectValidator(name)),
             styles(
-              "padding"       -> "0.5rem 1rem",
+              "padding" -> "0.5rem 1rem",
               "border-radius" -> "4px",
-              "background" -> (if model.currentValidator == name then
-                                 "#00800029"
+              "background" -> (if model.currentValidator == name then "#00800029"
                                else ""),
               "cursor" -> (if model.currentValidator == name then "default"
                            else "pointer"),
@@ -92,12 +91,12 @@ object Main extends TyrianIOApp[Msg, Model]:
       else
         div(
           styles(
-            "display"        -> "flex",
+            "display" -> "flex",
             "flex-direction" -> "column",
-            "align-items"    -> "center",
-            "gap"            -> "24px",
-            "max-width"      -> "900px",
-            "width"          -> "100%"
+            "align-items" -> "center",
+            "gap" -> "24px",
+            "max-width" -> "900px",
+            "width" -> "100%"
           )
         )(
           input(
@@ -105,25 +104,25 @@ object Main extends TyrianIOApp[Msg, Model]:
             onInput(Msg.UpdateInput(_)),
             value := model.inputValue,
             styles(
-              "width"         -> "100%",
-              "max-width"     -> "350px",
-              "padding"       -> "0.8rem",
+              "width" -> "100%",
+              "max-width" -> "350px",
+              "padding" -> "0.8rem",
               "border-radius" -> "4px",
-              "border"        -> "1px solid #ccc",
+              "border" -> "1px solid #ccc",
               "margin-bottom" -> "1rem"
             )
           ),
           div(
             styles(
-              "display"       -> "flex",
-              "gap"           -> "1rem",
+              "display" -> "flex",
+              "gap" -> "1rem",
               "margin-bottom" -> "1.5rem"
             )
           )(
             button(
               onClick(Msg.Submit),
               styles(
-                "padding"       -> "0.8rem 2rem",
+                "padding" -> "0.8rem 2rem",
                 "border-radius" -> "4px",
                 "cursor" -> (if model.inputValue.nonEmpty then "pointer"
                              else "default"),
@@ -135,10 +134,10 @@ object Main extends TyrianIOApp[Msg, Model]:
             button(
               onClick(Msg.Reset),
               styles(
-                "padding"          -> "0.8rem 2rem",
-                "border-radius"    -> "4px",
+                "padding" -> "0.8rem 2rem",
+                "border-radius" -> "4px",
                 "background-color" -> "#f0f0f0",
-                "border"           -> "1px solid #ddd",
+                "border" -> "1px solid #ddd",
                 "cursor" -> (if model.inputValue.nonEmpty then "pointer"
                              else "default"),
                 "opacity" -> (if model.inputValue.nonEmpty then "1" else "0.5"),
@@ -151,13 +150,13 @@ object Main extends TyrianIOApp[Msg, Model]:
             case Right(successMsg) =>
               div(
                 styles(
-                  "color"            -> "green",
-                  "font-size"        -> "1.2rem",
-                  "text-align"       -> "center",
-                  "padding"          -> "1rem",
-                  "min-width"        -> "350px",
-                  "border"           -> "1px solid #e5e5e5",
-                  "border-radius"    -> "4px",
+                  "color" -> "green",
+                  "font-size" -> "1.2rem",
+                  "text-align" -> "center",
+                  "padding" -> "1rem",
+                  "min-width" -> "350px",
+                  "border" -> "1px solid #e5e5e5",
+                  "border-radius" -> "4px",
                   "background-color" -> "#f8fff8"
                 )
               )(text(s"✓ $successMsg"))
@@ -165,13 +164,13 @@ object Main extends TyrianIOApp[Msg, Model]:
             case Left(errorMsg) =>
               div(
                 styles(
-                  "color"            -> "#dc3545",
-                  "font-size"        -> "1.2rem",
-                  "text-align"       -> "center",
-                  "padding"          -> "1rem",
-                  "min-width"        -> "350px",
-                  "border"           -> "1px solid #f8d7da",
-                  "border-radius"    -> "4px",
+                  "color" -> "#dc3545",
+                  "font-size" -> "1.2rem",
+                  "text-align" -> "center",
+                  "padding" -> "1rem",
+                  "min-width" -> "350px",
+                  "border" -> "1px solid #f8d7da",
+                  "border-radius" -> "4px",
                   "background-color" -> "#f8f8f8"
                 )
               )(text(s"✗ $errorMsg"))
@@ -202,8 +201,7 @@ object Msg:
   val fromHttpResponse: Decoder[Msg] =
     Decoder[Msg](
       response =>
-        if response.status.code >= 200 && response.status.code < 300 then
-          SubmissionSucceeded(response.body)
+        if response.status.code >= 200 && response.status.code < 300 then SubmissionSucceeded(response.body)
         else SubmissionFailed(response.body),
       error => SubmissionFailed(error.toString)
     )
