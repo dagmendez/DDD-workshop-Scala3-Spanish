@@ -7,6 +7,9 @@
 .vscode
 .vscode/
 
+#devbox
+devbox.lock
+
 #mill
 mill
 out
@@ -19,6 +22,7 @@ frontend/dist/*
 frontend/dist/
 frontend/.parcel-cache/
 frontend/node_modules
+frontend/yarn.lock
 
 # Cask
 backend/out

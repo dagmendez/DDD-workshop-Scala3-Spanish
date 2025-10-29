@@ -31,6 +31,8 @@ object frontend extends ScalaJSModule {
 object backend extends ScalaModule {
   def scalaVersion = "3.7.3"
 
+  def scalacOptions = Seq("-release:21")
+
   def mvnDeps = Seq(
     mvn"com.lihaoyi::cask:0.11.3",
     mvn"com.lihaoyi::upickle:4.4.0",
