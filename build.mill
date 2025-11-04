@@ -9,23 +9,13 @@ import mill.scalajslib.api._
 
 object frontend extends ScalaJSModule {
 
-  // Basic project settings
   def scalaVersion = "3.7.3"
 
   def scalaJSVersion = "1.20.1"
 
   def moduleKind = ModuleKind.CommonJSModule
 
-  // Organization and project metadata
-  def artifactName = "frontend"
-
-  // Dependencies
-  def mvnDeps = Seq(
-    mvn"io.indigoengine::tyrian-io::0.14.0",
-    mvn"io.circe::circe-core::0.14.14",
-    mvn"io.circe::circe-generic::0.14.14",
-    mvn"io.circe::circe-parser::0.14.14"
-  )
+  def mvnDeps = Seq(mvn"io.indigoengine::tyrian-io::0.14.0")
 }
 
 object backend extends ScalaModule {
@@ -36,7 +26,6 @@ object backend extends ScalaModule {
   def mvnDeps = Seq(
     mvn"com.lihaoyi::cask:0.11.3",
     mvn"com.lihaoyi::upickle:4.4.0",
-    mvn"io.github.kitlangton::neotype:0.3.36",
     mvn"io.github.iltotore::iron:3.2.0"
   )
 

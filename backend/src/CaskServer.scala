@@ -55,7 +55,7 @@ object CaskServer extends cask.MainRoutes:
   def correcto(request: cask.Request): cask.Response[String] =
     ValidadorCorrecto.ID.disyuntiva(request.text()) match
       case Right(id)   => respuestaSatisfactoria(id.formateado)
-      case Left(error) => respuestaErronea(error.getMessage)
+      case Left(error) => respuestaErronea(error.causa)
 
   @cask.options("/correcto")
   def opcionesCorrecto(): cask.Response[String] =
