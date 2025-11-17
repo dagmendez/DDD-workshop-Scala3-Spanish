@@ -6,31 +6,54 @@ import mill._
 import mill.scalalib._
 import mill.scalajslib._
 import mill.scalajslib.api._
+import org.typelevel.scalacoptions.ScalaVersion
+import mill.api.Task.Simple
 
-object frontend extends ScalaJSModule {
-
-  def scalaVersion = "3.7.3"
-
-  def scalaJSVersion = "1.20.1"
-
-  def moduleKind = ModuleKind.CommonJSModule
-
-  def mvnDeps = Seq(mvn"io.indigoengine::tyrian-io::0.14.0")
-}
-
-object backend extends ScalaModule {
-  def scalaVersion = "3.7.3"
-
+trait BackendSettings extends ScalaModule{
+  // Latest Scala-Next vesion
+  def scalaVersion = "3.7.4"
+  // Targer Java 21 for compilation
   def scalacOptions = Seq("-release:21")
-
-  def mvnDeps = Seq(
-    mvn"com.lihaoyi::cask:0.11.3",
-    mvn"com.lihaoyi::upickle:4.4.0",
-    mvn"io.github.iltotore::iron:3.2.0"
-  )
-
+  // Testing settings
   object test extends ScalaTests {
     def mvnDeps = Seq(mvn"com.lihaoyi::utest:0.9.1")
     def testFramework = "utest.runner.Framework"
   }
+}
+
+// Backend API
+object api extends BackendSettings
+
+// Proof Of Concept - No DDD
+object poc extends BackendSettings {
+  def moduleDeps = Seq(api)
+}
+
+// Minimum Viable Product - Clasic DDD
+object mvp extends BackendSettings{
+  def moduleDeps = Seq(api)
+}
+
+// Scala 3 Type Level DDD
+object refined extends BackendSettings {
+  def moduleDeps = Seq(api)
+  def mvnDeps = Seq(mvn"io.github.iltotore::iron:3.2.0")
+}
+// Backend Server
+object server extends BackendSettings {
+  // Module dependencies
+  def moduleDeps = Seq(poc, mvp, refined)
+
+  // Libraries to run the server
+  def mvnDeps = Seq(
+    mvn"com.lihaoyi::cask:0.11.3",
+    mvn"com.lihaoyi::upickle:4.4.0"
+    )
+}
+// Frontend
+object frontend extends ScalaJSModule {
+  def scalaVersion = "3.7.3"
+  def scalaJSVersion = "1.20.1"
+  def moduleKind = ModuleKind.CommonJSModule
+  def mvnDeps = Seq(mvn"io.indigoengine::tyrian-io::0.14.0")
 }
