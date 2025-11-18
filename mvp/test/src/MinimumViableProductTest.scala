@@ -46,8 +46,8 @@ object MinimumViableProductTest extends TestSuite:
 
     test("NIE happy path"):
       Seq(
-        ("X0000001R", "X-0000001-R"),
-        ("Y2345678Z", "Y-2345678-Z")
+        ("X0000001R", "X0000001-R"),
+        ("Y2345678Z", "Y2345678-Z")
       ).foreach:
         case (input, expected) =>
           NIE(input) match
@@ -93,8 +93,8 @@ object MinimumViableProductTest extends TestSuite:
           ("12345678Z", "12345678-Z"),
           ("00000001R", "00000001-R"),
           ("99999999R", "99999999-R"),
-          ("X0000001R", "X-0000001-R"),
-          ("Y2345678Z", "Y-2345678-Z")
+          ("X0000001R", "X0000001-R"),
+          ("Y2345678Z", "Y2345678-Z")
         ).foreach:
           case (input, expected) =>
             validateID(input) match
@@ -106,7 +106,7 @@ object MinimumViableProductTest extends TestSuite:
         test("white spaces"):
           Seq(
             ("  12345678Z  ", "12345678-Z"),
-            ("  X1234567L  ", "X-1234567-L")
+            ("  X1234567L  ", "X1234567-L")
           ).foreach:
             case (input, expected) =>
               validateID(input) match
@@ -116,7 +116,7 @@ object MinimumViableProductTest extends TestSuite:
         test("Dash"):
           Seq(
             ("12345678-Z", "12345678-Z"),
-            ("X-1234567-L", "X-1234567-L")
+            ("X-1234567-L", "X1234567-L")
           ).foreach:
             case (input, expected) =>
               validateID(input) match
@@ -128,8 +128,8 @@ object MinimumViableProductTest extends TestSuite:
             ("12345678z", "12345678-Z"),
             ("00000001r", "00000001-R"),
             ("99999999r", "99999999-R"),
-            ("X0000001r", "X-0000001-R"),
-            ("Y2345678z", "Y-2345678-Z")
+            ("X0000001r", "X0000001-R"),
+            ("Y2345678z", "Y2345678-Z")
           ).foreach:
             case (input, expected) =>
               validateID(input) match
