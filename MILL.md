@@ -21,3 +21,32 @@ hay que repetir la operación añadiendo el nombre del comando delante. Por ejem
 ```
 Una vez sabes que comando quieres utilizar, basta con borrar ``resolve`` y ejecutar. [Aquí](backend/README.md) puedes
 encontrar los comandos básicos para trabajar con el _back end_.
+
+### Formatear
+
+#### Código Scala
+De acuerdo a la configuarión en [.scalafmt.conf](/.scalafmt.conf).
+
+```shell
+./mill mill.scalalib.scalafmt/
+```
+- Para validar que todo está formateado bien
+```shell
+./mill mill.scalalib.scalafmt/checkFormatAll
+```
+
+#### Imports
+De acuerdo a la configuración en [.scalafix.conf](/.scalafix.conf).
+
+- `poc`: ```shell
+./mill poc.fix
+./mill poc.test.fix
+```
+- `mvp`: ```shell
+./mill mvp.fix
+./mill mvp.test.fix
+```
+- `refined`: ```shell
+./mill refined.fix
+./mill refined.test.fix
+```

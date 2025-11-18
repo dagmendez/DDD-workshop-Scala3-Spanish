@@ -6,16 +6,15 @@ import mill._
 import mill.scalalib._
 import mill.scalajslib._
 import mill.scalajslib.api._
-import org.typelevel.scalacoptions.ScalaVersion
-import mill.api.Task.Simple
+import com.goyeau.mill.scalafix.ScalafixModule
 
-trait BackendSettings extends ScalaModule{
+trait BackendSettings extends ScalaModule with ScalafixModule {
   // Latest Scala-Next vesion
   def scalaVersion = "3.7.4"
   // Targer Java 21 for compilation
   def scalacOptions = Seq("-release:21")
   // Testing settings
-  object test extends ScalaTests {
+  object test extends ScalaTests with ScalafixModule {
     def mvnDeps = Seq(mvn"com.lihaoyi::utest:0.9.1")
     def testFramework = "utest.runner.Framework"
   }
@@ -30,7 +29,7 @@ object poc extends BackendSettings {
 }
 
 // Minimum Viable Product - Clasic DDD
-object mvp extends BackendSettings{
+object mvp extends BackendSettings {
   def moduleDeps = Seq(api)
 }
 
@@ -40,7 +39,7 @@ object refined extends BackendSettings {
   def mvnDeps = Seq(mvn"io.github.iltotore::iron:3.2.0")
 }
 // Backend Server
-object server extends BackendSettings {
+object backend extends BackendSettings {
   // Module dependencies
   def moduleDeps = Seq(poc, mvp, refined)
 
