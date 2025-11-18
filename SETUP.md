@@ -63,4 +63,4 @@ Una vez instalado, se puede comprobar la versión instalada ejecutando:
 ```shell
 > ./mill version
 ```
-Existe una [pequeña guía práctica](MILL.md) para el proyecto.
+Existe una [pequeña guía práctica](MILL.md) de ``Mill`` para el proyecto.
