@@ -48,16 +48,16 @@ object MinimumViableProduct extends API:
                 case error: String => error
                 case _: Boolean    => new NIF(nif_number, control_letter)
 
-  class NIE private (val nie_letter: NieLetter, val nie_number: NIENumber, control_letter: ControlLetter) extends ID:
-    override def toUpperCaseWithDash: String = s"$nie_letter-${nie_number.value}-$control_letter"
+  class NIE private (val nie_letter: NIELetter, val nie_number: NIENumber, control_letter: ControlLetter) extends ID:
+    override def toUpperCaseWithDash: String = s"$nie_letter${nie_number.value}-$control_letter"
 
   object NIE:
     def apply(input: String): NIE | String =
       val (head, tail) = (input.head.toString(), input.tail.toString())
       val (number, letter) = tail.splitAt(tail.length() - 1)
-      NieLetter(head) match
+      NIELetter(head) match
         case error: String => error
-        case nie_letter: NieLetter =>
+        case nie_letter: NIELetter =>
           NIENumber(number) match
             case error: String => error
             case nie_number: NIENumber =>

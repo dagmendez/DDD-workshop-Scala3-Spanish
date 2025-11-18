@@ -25,7 +25,7 @@ object Rules:
     else s"Invalid NIE Number: '$nie_number' should contain 7 digits"
 
   def isValidNIELetter(nie_letter: String): Boolean | String =
-    if NieLetter.values.map(_.toString).contains(nie_letter)
+    if NIELetter.values.map(_.toString).contains(nie_letter)
     then true
     else s"Invalid NIE Letter: '$nie_letter' is not a valid NIE letter"
 
@@ -39,10 +39,10 @@ object Rules:
     then true
     else s"Invalid NIF: '$nif_number' does not match the control letter '$control_letter'"
 
-  def isValidNIE(nie_letter: NieLetter, nie_number: String, control_letter: ControlLetter): Boolean | String =
+  def isValidNIE(nie_letter: NIELetter, nie_number: String, control_letter: ControlLetter): Boolean | String =
     val nie_letter_to_digit = Math.pow(10, 7) * nie_letter.ordinal
     if (nie_letter_to_digit + nie_number.toInt) % 23 == control_letter.ordinal
     then true
-    else s"Invalid NIE: '$nie_letter-$nie_number' does not match the control letter '$control_letter'"
+    else s"Invalid NIE: '$nie_letter$nie_number' does not match the control letter '$control_letter'"
 
 end Rules

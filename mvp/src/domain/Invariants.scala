@@ -7,16 +7,16 @@ object Invariants:
 
   // Do NOT change the order of the enumeration.
   // The ordinal value of each letter corresponds with number they represent
-  enum NieLetter:
+  enum NIELetter:
     case X // 0
     case Y // 1
     case Z // 2
 
-  object NieLetter:
-    def apply(input: String): NieLetter | String =
+  object NIELetter:
+    def apply(input: String): NIELetter | String =
       isValidNIELetter(input) match
         case error: String => error
-        case _: Boolean    => NieLetter.valueOf(input)
+        case _: Boolean    => NIELetter.valueOf(input)
 
   // Do NOT change the order of the enumeration.
   // The ordinal value of each letter corresponds with the remainder of number divided by 23
