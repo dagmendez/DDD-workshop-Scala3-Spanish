@@ -8,16 +8,16 @@ import scala.scalajs.js.annotation.*
 object Main extends TyrianIOApp[Msg, Model]:
 
   private val validatorEndpoints: List[(String, String)] = List(
-    ("Obvio", "obvio"),
-    ("Correcto", "correcto"),
-    ("Correctísimo", "correctisimo")
+    ("Proof of Concept", "poc"),
+    ("Minimum Viable Product", "mvp"),
+    ("Refined", "refined")
   )
 
   def router: Location => Msg =
     Routing.none(Msg.NoOp)
 
   def init(flags: Map[String, String]): (Model, Cmd[IO, Msg]) =
-    (Model("Empieza seleccionando un validador", "", Right("Introduce un ID")), Cmd.None)
+    (Model("Start by chossing a validator", "", Right("Introduce an ID")), Cmd.None)
 
   def update(model: Model): Msg => (Model, Cmd[IO, Msg]) =
     case Msg.SelectValidator(name) =>
@@ -28,7 +28,7 @@ object Main extends TyrianIOApp[Msg, Model]:
       val endpoint = validatorEndpoints
         .find(_._1 == model.currentValidator)
         .map(_._2)
-        .getOrElse("desconocido")
+        .getOrElse("unknown")
       val url = s"http://localhost:8080/$endpoint"
       (
         model,
@@ -43,7 +43,7 @@ object Main extends TyrianIOApp[Msg, Model]:
     case Msg.SubmissionFailed(error) =>
       (model.copy(submissionStatus = Left(error)), Cmd.None)
     case Msg.Reset =>
-      (Model(model.currentValidator, "", Right("Introduce un ID")), Cmd.None)
+      (Model(model.currentValidator, "", Right("Introduce an ID")), Cmd.None)
     case Msg.NoOp =>
       (model, Cmd.None)
 
@@ -60,7 +60,7 @@ object Main extends TyrianIOApp[Msg, Model]:
         "padding" -> "1rem"
       )
     )(
-      h1(text("Bienvenidos al taller de DDD")),
+      h1(text("Welcome to the DDD workshop!")),
       div(
         styles(
           "display" -> "flex",
@@ -87,7 +87,7 @@ object Main extends TyrianIOApp[Msg, Model]:
         }
       ),
       h2(text(model.currentValidator)),
-      if model.currentValidator == "No has seleccionado ningún validador" then Empty
+      if model.currentValidator == "No validator has been chossen yet" then Empty
       else
         div(
           styles(

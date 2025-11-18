@@ -1,5 +1,4 @@
 import scala.util.*
-
 object CaskServer extends cask.MainRoutes:
 
   private val corsHeaders = Seq(
@@ -9,66 +8,61 @@ object CaskServer extends cask.MainRoutes:
     "Access-Control-Max-Age" -> "86400"
   )
 
-  private def respuestaSatisfactoria(formattedId: String): cask.Response[String] =
-    cask.Response(
-      formattedId,
-      statusCode = 200,
-      headers = corsHeaders
-    )
+  private def success(formattedId: String): cask.Response[String] = cask.Response(
+    formattedId,
+    statusCode = 200,
+    headers = corsHeaders
+  )
 
-  private def respuestaErronea(errorMessage: String): cask.Response[String] =
-    cask.Response(
-      errorMessage,
-      statusCode = 400,
-      headers = corsHeaders
-    )
+  private def failure(errorMessage: String): cask.Response[String] = cask.Response(
+    errorMessage,
+    statusCode = 400,
+    headers = corsHeaders
+  )
 
   @cask.options("/*")
-  def handleOptions(): cask.Response[String] =
-    cask.Response("", headers = corsHeaders)
+  def handleOptions(): cask.Response[String] = cask.Response("", headers = corsHeaders)
 
   @cask.get("/")
-  def saludo(): cask.Response[String] =
-    cask.Response(
-      "Bienvenidos al taller DDD con Scala 3!",
-      headers = corsHeaders
-    )
+  def greeting(): cask.Response[String] = cask.Response(
+    "Welcome to DDD workshop!",
+    headers = corsHeaders
+  )
 
-  @cask.get("/dame_informacion")
-  def noInfo(): cask.Response[String] =
-    cask.Response(
-      "No tengo información que darte en este momento",
-      headers = corsHeaders
-    )
+  @cask.get("/give_me_info")
+  def noInfo(): cask.Response[String] = cask.Response(
+    "No info for you Sir.",
+    headers = corsHeaders
+  )
 
-  @cask.post("/obvio")
-  def obvio(request: cask.Request): cask.Response[String] =
-    Try(ValidadorObvio.validarID(request.text())) match
-      case Success(result) => respuestaSatisfactoria(result)
-      case Failure(error)  => respuestaErronea(error.getMessage)
+  @cask.post("/poc")
+  def poc(request: cask.Request): cask.Response[String] =
+    ProofOfConcept.validateID(request.text()) match
+      case id: api.ID    => success(id.toUpperCaseWithDash)
+      case error: String => failure(error)
 
-  @cask.options("/obvio")
-  def opcionesObvio(): cask.Response[String] =
-    cask.Response("Opciones de Obvio", headers = corsHeaders)
+  @cask.options("/poc")
+  def optionsPoc(): cask.Response[String] =
+    cask.Response("Options of PoC", headers = corsHeaders)
 
-  @cask.post("/correcto")
-  def correcto(request: cask.Request): cask.Response[String] =
-    ValidadorCorrecto.ID.disyuntiva(request.text()) match
-      case Right(id)   => respuestaSatisfactoria(id.formateado)
-      case Left(error) => respuestaErronea(error.causa)
+  @cask.post("/mvp")
+  def mvp(request: cask.Request): cask.Response[String] =
+    MinimumViableProduct.validateID(request.text()) match
+      case id: api.ID    => success(id.toUpperCaseWithDash)
+      case error: String => failure(error)
 
-  @cask.options("/correcto")
-  def opcionesCorrecto(): cask.Response[String] =
-    cask.Response("Opciones de Correcto", headers = corsHeaders)
+  @cask.options("/mvp")
+  def optionsMvp(): cask.Response[String] =
+    cask.Response("Options of MVP", headers = corsHeaders)
 
-  @cask.post("/correctisimo")
-  def correctisimo(request: cask.Request): cask.Response[String] =
-    ValidadorCorrectisimo.ID.disyuntiva(request.text()) match
-      case Right(id)   => respuestaSatisfactoria(id.formateado)
-      case Left(error) => respuestaErronea(error.causa)
+  @cask.post("/refined")
+  def refined(request: cask.Request): cask.Response[String] =
+    Refined.validateID(request.text()) match
+      case id: api.ID    => success(id.toUpperCaseWithDash)
+      case error: String => failure(error)
 
-  @cask.options("/correctisimo")
-  def opcionesCorrectisimo(): cask.Response[String] =
-    cask.Response("Opciones de Correctisimo", headers = corsHeaders)
+  @cask.options("/refined")
+  def optionsSuperproduct(): cask.Response[String] =
+    cask.Response("Options of Refined", headers = corsHeaders)
 
   initialize()
