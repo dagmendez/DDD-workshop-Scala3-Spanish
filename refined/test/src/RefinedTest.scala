@@ -1,6 +1,7 @@
-import Refined.*
+package refined
+
+import refined.Refined.*
 import utest.*
-import api.ID
 
 object RefinedTest extends TestSuite:
   val tests = Tests {
