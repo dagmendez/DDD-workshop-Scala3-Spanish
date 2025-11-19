@@ -1,4 +1,4 @@
-package api
+package domain
 
 trait ID:
   def toUpperCaseWithDash: String

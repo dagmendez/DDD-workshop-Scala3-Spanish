@@ -2,9 +2,10 @@ import MinimumViableProduct.*
 import domain.Rules.*
 import domain.Invariants.*
 import utest.*
-import api.ID
+import domain.ID
 
 object MinimumViableProductTest extends TestSuite:
+  
   val tests = Tests {
     test("NIF happy path"):
       Seq(

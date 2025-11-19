@@ -23,25 +23,15 @@ trait BackendSettings extends ScalaModule with ScalafixModule {
 // Backend API
 object api extends BackendSettings
 
-// Proof Of Concept - No DDD
-object poc extends BackendSettings {
-  def moduleDeps = Seq(api)
-}
-
 // Minimum Viable Product - Clasic DDD
 object mvp extends BackendSettings {
   def moduleDeps = Seq(api)
 }
 
-// Scala 3 Type Level DDD
-object refined extends BackendSettings {
-  def moduleDeps = Seq(api)
-  def mvnDeps = Seq(mvn"io.github.iltotore::iron:3.2.0")
-}
 // Backend Server
 object backend extends BackendSettings {
   // Module dependencies
-  def moduleDeps = Seq(poc, mvp, refined)
+  def moduleDeps = Seq(mvp)
 
   // Libraries to run the server
   def mvnDeps = Seq(

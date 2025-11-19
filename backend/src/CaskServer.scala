@@ -1,3 +1,4 @@
+import domain.ID
 import scala.util.*
 object CaskServer extends cask.MainRoutes:
 
@@ -35,34 +36,14 @@ object CaskServer extends cask.MainRoutes:
     headers = corsHeaders
   )
 
-  @cask.post("/poc")
-  def poc(request: cask.Request): cask.Response[String] =
-    ProofOfConcept.validateID(request.text()) match
-      case id: api.ID    => success(id.toUpperCaseWithDash)
-      case error: String => failure(error)
-
-  @cask.options("/poc")
-  def optionsPoc(): cask.Response[String] =
-    cask.Response("Options of PoC", headers = corsHeaders)
-
   @cask.post("/mvp")
   def mvp(request: cask.Request): cask.Response[String] =
     MinimumViableProduct.validateID(request.text()) match
-      case id: api.ID    => success(id.toUpperCaseWithDash)
+      case id: ID    => success(id.toUpperCaseWithDash)
       case error: String => failure(error)
 
   @cask.options("/mvp")
   def optionsMvp(): cask.Response[String] =
     cask.Response("Options of MVP", headers = corsHeaders)
-
-  @cask.post("/refined")
-  def refined(request: cask.Request): cask.Response[String] =
-    Refined.validateID(request.text()) match
-      case id: api.ID    => success(id.toUpperCaseWithDash)
-      case error: String => failure(error)
-
-  @cask.options("/refined")
-  def optionsSuperproduct(): cask.Response[String] =
-    cask.Response("Options of Refined", headers = corsHeaders)
 
   initialize()
