@@ -5,9 +5,9 @@ El objetivo de este taller es enseñar los conceptos básicos del Diseño Dirigi
 Estos conceptos ayudan a los ingenieros a guiar a los asistentes de Inteligencia Artificial a generar mejor código.
 
 El taller se divide en tres partes:
-1. **Vibe Coding**: pedirle a la IA que genere código con base en los requisitos de negocio sin más contexto.
-2. **Standard DDD & AI**: pedirle a la IA que genere el mismo código con el contexto adicional del DDD.
-3. **Scala DDD & AI**: pedirle a la IA que genere el mismo código con los fuertes guardarrailes de Scala.
+1. **Prueba de concepto**: pedirle a la IA que genere código con base en los requisitos de técnicos sin más contexto.
+2. **Minimum Viable Product**: pedirle a la IA que genere el mismo código con el contexto adicional de negocio y utilizando los principios del DDD.
+3. **Refined**: pedirle a la IA que genere el mismo código con los fuertes guardarrailes de Scala 3, ayudándonos de metaprogramación y la librería `Iron`.
 
 ## Instalación
 Sigue [SETUP.md](/SETUP.md) para tener la mejor experiencia trabajando con este taller.
@@ -89,3 +89,8 @@ mill backend.run
 ```
 
 Servido en: `http://localhost:8080/`
+
+## Colaboración
+Si te ha gustado este taller, márcalo con una estrella, compártelo...
+
+Puedes añadir tus propias implementaciones del _back end_ o mejorar el _front end_ forkeando el proyecto y abriéndo una pull request.
