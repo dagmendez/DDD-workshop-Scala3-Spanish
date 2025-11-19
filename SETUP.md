@@ -10,20 +10,28 @@
 
 Guía de instalación: https://www.jetify.com/docs/devbox/installing-devbox
 
-Una vez instalado ``DevBox``, abre una terminal en la carpeta donde quieras clonar el proyecto y ejecuta:
+Una vez instalado ``DevBox``, puedes comprobar la version ejecutando:
 ```shell
-git clone git@github.com:dagmendez/DDD-workshop-Scala3-Spanish.git
+devbox version
+```
+
+Acto seguido, abre una terminal en la carpeta donde quieras clonar el proyecto y ejecuta:
+```shell
+git clone https://github.com/dagmendez/DDD-workshop-Scala3-Spanish.git
 ```
 Nota: Si no tienes ``git`` instalado: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+Para instalar todas las dependencias necesariasdefinidas en el archivo ``devbox.json``, ejecuta:
+```shell
+devbox install
+```
 
 Para iniciar la consola con todas las dependencias ejecuta el comando:
 ```shell
 devbox shell
 ```
-Seguramente la terminal te pida la contraseña de usuario para poder instalar todas las dependencias necesarias
-definidas en el archivo ``devbox.json``. Una vez instalas las dependencias, ya podrás empezar el taller.
 
-Si tienes problemas con ``DevBox``, sigue los pasos de la instalación alternativa
+Si tienes problemas con ``DevBox``, sigue los pasos de la instalación alternativa.
 
 ## Alternativa
 

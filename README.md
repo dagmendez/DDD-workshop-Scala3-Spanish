@@ -12,17 +12,57 @@ El taller se divide en tres partes:
 ## Instalación
 Sigue [SETUP.md](/SETUP.md) para tener la mejor experiencia trabajando con este taller.
 
+## Taller
+
+### Prueba de concepto
+```shell
+git checkout poc
+```
+Experimenta con tu asistente de IA para crear una solución al validador de IDs.
+
+### Producto Viable Mínimo
+```shell
+git checkout mvp
+```
+Crea un artefacto que cumple todos los requisitos técnicos y de negocio. Apollate en la IA para crea una solución robusta que pase en verde todos los tests.
+
+La solución disponible está implementado utilizando `union type` y `pattern matching`, presentes en muchos lenguajes de programación. 
+```shell
+git checkout mvp-resolved
+```
+### Refinado
+```shell
+git checkout refined
+```
+Explora las nuevas funcionalidades de Scala 3:
+- Metaprogramación accesible con `inline` ([Metaprogramming - Inline](https://docs.scala-lang.org/scala3/reference/metaprogramming/inline.html))
+- Operaciones en tiempo de compilación como `constValue[A]` o `ToString[A]` ([Metaprogramming Compile-time operations](https://docs.scala-lang.org/scala3/reference/metaprogramming/compiletime-ops.html))
+- Tipos refinados utilizando la librería [Iron](https://iltotore.github.io/iron/docs/)
+
+La solución está implementada de forma concisa para respetar los requisitos de negocio y técnicos. Utiliza estructuras `for-yield` que representan cadenas de `flatMap` y `map`, conceptos centrales de la programación funcional.
+```shell
+checkout refined-resolved
+```
+
+### Resuelto
+Esta rama contine las 3 implementaciones y te permite comparar los mensajes de error en el _front end_ y las diferentes implementaciones del _back end_ en un único lugar.
+```shell
+git checkout resolved
+```
+
 ## Ejecución
 Para poder ejecutar el proyecto, te recomiendo abrir dos terminales y ejecutar en cada una de ellas el _front end_ y el 
 _back end_ respectivamente. Si usas ``DevBox``, recuerda iniciarlo en las dos terminales.
 
-### Front End
+**NOTA**: `mill` solo se ejecuta en un hilo, por lo que tienes que lanzar primero el _front end_ antes del _back end_.
+
+### Terminal 1: Front End
 Antes de iniciar el _front end_ hay que compilar el código a ``JavaScript``. Para ello ejecutamos:
 ```shell
-./mill frontend.compile
+mill frontend.compile
 ```
 ```shell
-./mill frontend.fastLinkJS
+mill frontend.fastLinkJS
 ```
 
 Acto seguido, entramos en la carpeta /frontend
@@ -39,13 +79,13 @@ yarn start
 ```
 Servido en: `http://localhost:1234/`
 
-### Back End
+### Terminal 2: Back End
 En una nueva consola, compilamos el código y ejecutamos la clase principal:
 ```shell
-./mill backend.compile
+mill backend.compile
 ```
 ```shell
-./mill backend.run
+mill backend.run
 ```
 
 Servido en: `http://localhost:8080/`

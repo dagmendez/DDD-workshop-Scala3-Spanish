@@ -1,4 +1,4 @@
-//| mill-version: 1.0.5
+//| mill-version: 1.0.6
 //| mvnDeps:
 //| - com.goyeau::mill-scalafix::0.6.0
 //| - org.typelevel::scalac-options:0.1.8
