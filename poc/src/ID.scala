@@ -1,4 +1,4 @@
-package api
+package poc
 
 trait ID:
   def toUpperCaseWithDash: String

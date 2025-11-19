@@ -1,5 +1,4 @@
-import api.API
-import api.ID
+package poc
 
 object ProofOfConcept extends API:
 
