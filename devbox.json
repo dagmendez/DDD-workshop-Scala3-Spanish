@@ -4,7 +4,7 @@
     "scala-next@3.7.3",
     "scalafmt@3.9.8",
     "scalafix@0.12.0",
-    "mill@1.0.4",
+    "mill@1.0.6",
     "jdk@21.0.8",
     "yarn@1.22.22"
   ],
