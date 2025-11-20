@@ -39,7 +39,7 @@ object CaskServer extends cask.MainRoutes:
   @cask.post("/mvp")
   def mvp(request: cask.Request): cask.Response[String] =
     MinimumViableProduct.validateID(request.text()) match
-      case id: ID    => success(id.toUpperCaseWithDash)
+      case id: ID        => success(id.toUpperCaseWithDash)
       case error: String => failure(error)
 
   @cask.options("/mvp")

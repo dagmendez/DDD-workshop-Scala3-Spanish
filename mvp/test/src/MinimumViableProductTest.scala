@@ -5,7 +5,7 @@ import utest.*
 import domain.ID
 
 object MinimumViableProductTest extends TestSuite:
-  
+
   val tests = Tests {
     test("NIF happy path"):
       Seq(

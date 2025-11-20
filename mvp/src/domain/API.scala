@@ -1,4 +1,5 @@
 package domain
+
 import domain.ID
 
 trait API:
