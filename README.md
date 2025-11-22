@@ -16,23 +16,23 @@ Sigue [SETUP.md](/SETUP.md) para tener la mejor experiencia trabajando con este 
 
 ### Prueba de concepto
 ```shell
-git checkout poc
+git checkout poc-task
 ```
 Experimenta con tu asistente de IA para crear una solución al validador de IDs.
 
 ### Producto Viable Mínimo
 ```shell
-git checkout mvp
+git checkout mvp-task
 ```
-Crea un artefacto que cumple todos los requisitos técnicos y de negocio. Apollate en la IA para crea una solución robusta que pase en verde todos los tests.
+Crea un artefacto que cumple todos los requisitos técnicos y de negocio. Apóyate en la IA para crear una solución robusta que pase en verde todos los tests.
 
-La solución disponible está implementado utilizando `union type` y `pattern matching`, presentes en muchos lenguajes de programación. 
+La solución disponible está implementada utilizando `union type` y `pattern matching`, presentes en muchos lenguajes de programación. 
 ```shell
 git checkout mvp-resolved
 ```
 ### Refinado
 ```shell
-git checkout refined
+git checkout refined-task
 ```
 Explora las nuevas funcionalidades de Scala 3:
 - Metaprogramación accesible con `inline` ([Metaprogramming - Inline](https://docs.scala-lang.org/scala3/reference/metaprogramming/inline.html))
@@ -42,12 +42,6 @@ Explora las nuevas funcionalidades de Scala 3:
 La solución está implementada de forma concisa para respetar los requisitos de negocio y técnicos. Utiliza estructuras `for-yield` que representan cadenas de `flatMap` y `map`, conceptos centrales de la programación funcional.
 ```shell
 checkout refined-resolved
-```
-
-### Resuelto
-Esta rama contine las 3 implementaciones y te permite comparar los mensajes de error en el _front end_ y las diferentes implementaciones del _back end_ en un único lugar.
-```shell
-git checkout resolved
 ```
 
 ## Ejecución
